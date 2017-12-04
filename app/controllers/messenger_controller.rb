@@ -11,6 +11,8 @@ class MessengerController < Messenger::MessengerController
 
   private
 
+  NO_TRANSLATE = 'Đừng có gởi icon hay hỉnh ảnh gì hết nhóe, tui hổng có dịch đâu. Ahihi'
+
   def maps
     [
       [/k(h|H)/, 'x'],
@@ -47,6 +49,7 @@ class MessengerController < Messenger::MessengerController
   end
 
   def translate(text)
+    return NO_TRANSLATE if text.blank?
     maps.each do |regex|
       text = text.gsub(regex[0], regex[1])
     end
